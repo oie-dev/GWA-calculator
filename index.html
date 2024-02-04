@@ -18,10 +18,10 @@
              <table id="table">
                  <thead>
                      <tr>
-                         <th class="tblSub" width="60%"> Subject</th>
+                         <th class="tblSub" width="65%"> Subject</th>
                          <th class="tblUnit" width="10%"> Unit </th>
                          <th class="tblGrade" width="10%"> Grade </th>
-                         <th class="tblCbx" width="10%"> Compute </th>
+                         <th class="tblCbx" width="5%"> +/- </th>
                          <th class="tblEdit" width="5%"> </th>
                          <th class="tblDelete" width="5%"> </th>
                      </tr>
@@ -59,25 +59,26 @@
          var arrow = document.getElementById('arrow');
          arrow.onclick = function(){ displayButtons(); }
 
-         //Resizing Event
-         /*
+         //Resizing Event to hide buttons
          function handleResize()
          {
             if (window.innerWidth > 900){
                 isVisible = true;
                 boxDP.style.display = "block";
                 boxMain.style.gridTemplateRows = "1fr 1fr 1fr";
-            }
+            } 
+            /*
             else {
                 isVisible = false;
                 boxDP.style.display = "none";
                 boxMain.style.gridTemplateRows = "100px 1fr 50px";
                 arrow.src = "Images/icons8-arrow-up.png";
-            }
+            } 
+            */
          }
          window.addEventListener('resize', handleResize);
          handleResize();
-         */
+         
 
 
          //Button Display Click
