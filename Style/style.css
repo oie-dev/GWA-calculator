@@ -260,6 +260,7 @@ table tr:nth-child(odd){
         display: flex;
         justify-content: center;
         margin-bottom: 10px;
+        display: none;
     }
     .box3 > .div-arrow > img{
         width: 40px;
