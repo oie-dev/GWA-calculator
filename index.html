@@ -200,9 +200,15 @@
 
             row.parentNode.removeChild(row);
             displayGWA();
-        }
+
+            //Display Buttons
+            isVisible = true;
+            boxDP.style.display = "block";
+            boxMain.style.gridTemplateRows = "100px 1fr 300px";
+            arrow.src = "Images/icons8-arrow-down.png";
+       }
         
-         //Rmemove Row
+         //Remove Row
          function removeRow(row){
             let subj = row.cells[0].innerText;
             var res = confirm('Remove ' +subj+ '?');
