@@ -9,6 +9,7 @@
 </head>
 <body>
     <!-- Main Container -->
+<<<<<<< HEAD
     <div class="div-main" id="div-main">
         
         <div class="box1">
@@ -84,10 +85,74 @@
             
             if(isVisible)
             {
+=======
+     <div class="div-main" id="div-main">
+         
+         <div class="box1">
+             <h1 id="gwa">0.00</h1>
+             <p> General Average </p>
+         </div>         
+         <div class="box2">
+             <table id="table">
+                 <thead>
+                     <tr>
+                         <th class="tblSub" width="65%"> Subject</th>
+                         <th class="tblUnit" width="10%"> Unit </th>
+                         <th class="tblGrade" width="10%"> Grade </th>
+                         <th class="tblCbx" width="5%"> +/- </th>
+                         <th class="tblEdit" width="5%"> </th>
+                         <th class="tblDelete" width="5%"> </th>
+                     </tr>
+                 </thead>
+                 <tbody>
+                    <!--
+                     <tr>
+                         <td> Java Programming</td>
+                         <td> 5 </td>
+                         <td> 1.25 </td>
+                         <td><input type="checkbox"></td>
+                     </tr>
+                    -->
+                 </tbody>
+             </table>
+         </div>         
+         <div class="box3" id="box3"> 
+            <div class="div-arrow"><img src="Images/icons8-arrow-down.png" alt="arrow" id="arrow"/></div>
+            <div id="div-display">
+                 <input type="text" name="name" id="subject" value="" placeholder="Subject name" />
+                 <input type="number" name="unit" id="unit" value="" placeholder="Unit" min="1" max="10" step="1" maxlength="2" />
+                 <input type="number" name="grade" id="grade" value="" placeholder="Grade" min="1.0" max="100" step="0.25" maxlength="5"/>
+                 <div class="div-cbx"><input type="checkbox" name="cbx" id="cbx" checked=""/> Add this subject in GWA</div>
+                 <button type="submit" onclick="AddNewRow()">Submit</button>
+            </div>
+         </div>
+     </div>
+     
+     <!-- Javascript -->
+     <script type="text/javascript" charset="utf-8">
+     
+         var isVisible = true;
+         var boxDP = document.getElementById('div-display');
+         var boxMain = document.getElementById('div-main');
+         var arrow = document.getElementById('arrow');
+         arrow.onclick = function(){ displayButtons(); }
+
+         //Resizing Event to hide buttons
+         function handleResize()
+         {
+            if (window.innerWidth > 900){
+                isVisible = true;
+                boxDP.style.display = "block";
+                boxMain.style.gridTemplateRows = "1fr 1fr 1fr";
+            } 
+            /*
+            else {
+>>>>>>> e5544d6588a127df58f2c89eb56f42cdd662423d
                 isVisible = false;
                 boxDP.style.display = "none";
                 boxMain.style.gridTemplateRows = "100px 1fr 50px";
                 arrow.src = "Images/icons8-arrow-up.png";
+<<<<<<< HEAD
             }
             else
             {
@@ -182,6 +247,154 @@
             document.getElementById('subject').value = '';
             document.getElementById('unit').value = '';
             document.getElementById('grade').value = '';
+=======
+            } 
+            */
+         }
+         window.addEventListener('resize', handleResize);
+         handleResize();
+         
+
+
+         //Button Display Click
+         function displayButtons(){
+             
+             if(isVisible)
+             {
+                 isVisible = false;
+                 boxDP.style.display = "none";
+                 boxMain.style.gridTemplateRows = "100px 1fr 50px";
+                 arrow.src = "Images/icons8-arrow-up.png";
+             }
+             else
+             {
+                 isVisible = true;
+                 boxDP.style.display = "block";
+                 boxMain.style.gridTemplateRows = "100px 1fr 300px";
+                 arrow.src = "Images/icons8-arrow-down.png";
+             }
+         }
+         
+         
+         //add new arrow
+         function AddNewRow()
+         {
+             //get the value from txt inputs
+             let sub = document.getElementById('subject').value;
+             let unit = document.getElementById('unit').value;
+             let grade = document.getElementById('grade').value;
+             let isAdd = document.getElementById('cbx').checked;
+             
+             //Check if inputs have value
+             if ((isNaN(unit) || unit=='') || (isNaN(grade) || grade=='') || sub=='') alert("Please fill all the texboxes.");
+             else if (grade < 1 || grade > 100) alert("Please enter grades correctly. Range between 1-100");
+             else if (unit < 1 || unit > 10) alert("Please enter unit correctly. Range between 1-10");
+             else
+             {
+                //create new row
+                let newRow = document.createElement('tr');
+                
+                //create new cell and assign value
+                let cellSub = document.createElement('td');
+                cellSub.textContent = sub;
+                cellSub.classList.add("tblSub");
+                newRow.appendChild(cellSub);
+                            
+                //create new cell and assign value
+                let cellUnit = document.createElement('td');
+                cellUnit.textContent = unit;
+                cellUnit.classList.add("tblUnit");
+                newRow.appendChild(cellUnit);
+                            
+                //create new cell and assign value
+                let cellGrade = document.createElement('td');
+                cellGrade.textContent = grade;
+                cellGrade.classList.add("tblGrade");
+                newRow.appendChild(cellGrade);
+                            
+                //create new cell and input then assign properies
+                let cbx = document.createElement('input');
+                cbx.type = "checkbox";
+                cbx.checked = isAdd;
+                cbx.onclick = function(){ displayGWA(); }
+                
+                let cellCbx = document.createElement('td');
+                cellCbx.appendChild(cbx);
+                cellCbx.classList.add("tblCbx");
+                newRow.appendChild(cellCbx);
+                
+                //create new cell and img then assign properies
+                let imgEdit = document.createElement('img');
+                imgEdit.src = "Images/icons8-edit.png";
+                imgEdit.width = 18;
+                imgEdit.height = 18;
+                imgEdit.onclick = function(){ editRow(newRow); }
+
+                let cellEdit = document.createElement('td');
+                cellEdit.appendChild(imgEdit);
+                cellEdit.classList.add("tblEdit");
+                newRow.appendChild(cellEdit);
+
+                //create new cell and img then assign properies
+                let imgDelete = document.createElement('img');
+                imgDelete.src = "Images/icons8-delete.png";
+                imgDelete.width = 18;
+                imgDelete.height = 18;
+                imgDelete.onclick = function(){ removeRow(newRow); }
+
+                let cellDelete = document.createElement('td');
+                cellDelete.appendChild(imgDelete);
+                cellDelete.classList.add("tblDelete");
+                newRow.appendChild(cellDelete);
+
+                //Row click Event
+                //newRow.onclick = function(){ alert('Click Row'); }
+                
+                var tbl = document.getElementById('table');
+                tbl.getElementsByTagName('tbody')[0];
+                tbl.insertBefore(newRow, tbl.firstChild);
+                
+                //Display GWA and clear subname
+                displayGWA();
+                document.getElementById('subject').value = '';
+                document.getElementById('unit').value = '';
+                document.getElementById('grade').value = '';
+             }
+         }
+        
+         
+         //Edit Row
+         function editRow(row){
+            let subj = row.cells[0].innerText;
+            let unit = row.cells[1].innerText;
+            let grade = row.cells[2].innerText;
+            
+            document.getElementById('subject').value = subj;
+            document.getElementById('unit').value = unit;
+            document.getElementById('grade').value = grade;
+
+            row.parentNode.removeChild(row);
+            displayGWA();
+
+            //Display Buttons
+           displayButtons();
+           alert('Must be display');
+            /*
+            isVisible = true;
+            boxDP.style.display = "block";
+            boxMain.style.gridTemplateRows = "100px 1fr 300px";
+            arrow.src = "Images/icons8-arrow-down.png";
+            */
+       }
+        
+         //Remove Row
+         function removeRow(row){
+            let subj = row.cells[0].innerText;
+            var res = confirm('Remove ' +subj+ '?');
+            if (res){
+                row.parentNode.removeChild(row);
+                displayGWA();
+>>>>>>> e5544d6588a127df58f2c89eb56f42cdd662423d
             }
         }
 
